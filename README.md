@@ -2,10 +2,6 @@
 
 Welcome to the Cryptocurrency Price Prediction Tool! This tool uses machine learning to predict the price of a cryptocurrency over a selected time period. It retrieves historical price data from the CryptoCompare API, trains a linear regression model on that data, and generates price predictions for the selected time period.
 
-<p align="center">
-  <img src="![image](https://user-images.githubusercontent.com/2655106/219982017-22f43386-a703-4e5b-9ca8-fd69c758c569.png)" width="100" title="Cryptocurrency Price Prediction Tool">
-</p>
-
 ## Technical Description
 
 This tool is written in Python and uses the following libraries and APIs:
