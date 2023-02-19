@@ -56,12 +56,11 @@ High-level architecture diagram for the Cryptocurrency Price Prediction Tool:
 
 ## Installation
 
-Installation
 To install the Cryptocurrency Price Prediction Tool, follow these steps:
 
-Clone the repository: git clone https://github.com/ovinokurov/PricePrediction.git
-Install the required libraries: pip install requests openpyxl scikit-learn colorama
-Run the tool: python main.py
+1. Clone the repository: git clone https://github.com/ovinokurov/PricePrediction.git
+2. Install the required libraries: pip install requests openpyxl scikit-learn colorama
+3. Run the tool: python main.py
 
 This tool can be installed on Windows, Mac, Unix, or any other machine that has Python 3 and pip installed. If you do not have Python 3 or pip installed, you can download them from the official Python website: https://www.python.org/downloads/. Once you have installed Python 3 and pip, follow the steps above to install and use the tool.
 
