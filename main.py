@@ -101,6 +101,18 @@ while True:
     print("1. Linear Regression")
     print("2. ARIMA")
     algorithm_choice = int(input("> "))
+
+    # This function returns a list of combinations of p, d, and q 
+    # values for the ARIMA model to optimize its performance.
+    def get_pdq_values():
+        p = range(0, 6)
+        d = range(0, 2)
+        q = range(0, 2)
+        pdq = [(x[0], x[1], x[2]) for x in list(itertools.product(p, d, q))]
+        return pdq
+
+    # set up the pdq values
+    pdq = get_pdq_values()
     
 
     # Define the CryptoCompare API parameters for the selected cryptocurrency and time period
@@ -115,10 +127,7 @@ while True:
         if algorithm_choice == 1:
             model = LinearRegression()
         elif algorithm_choice == 2:
-            p = range(0, 6)
-            d = range(0, 2)
-            q = range(0, 2)
-            pdq = [(x[0], x[1], x[2]) for x in list(itertools.product(p, d, q))]
+            pdq
     elif time_period_choice == 2:
         name_time_period_choice = "7 days"
         CRYPTOCOMPARE_API_PARAMS = {
@@ -130,10 +139,7 @@ while True:
         if algorithm_choice == 1:
             model = LinearRegression()
         elif algorithm_choice == 2:
-            p = range(0, 6)
-            d = range(0, 2)
-            q = range(0, 2)
-            pdq = [(x[0], x[1], x[2]) for x in list(itertools.product(p, d, q))]
+            pdq
     elif time_period_choice == 3:
         name_time_period_choice = "12 months"
         CRYPTOCOMPARE_API_PARAMS = {
@@ -145,10 +151,7 @@ while True:
         if algorithm_choice == 1:
             model = LinearRegression()
         elif algorithm_choice == 2:
-            p = range(0, 6)
-            d = range(0, 2)
-            q = range(0, 2)
-            pdq = [(x[0], x[1], x[2]) for x in list(itertools.product(p, d, q))]
+            pdq
     else:
         print("Invalid time period choice. Please try again.")
         continue
