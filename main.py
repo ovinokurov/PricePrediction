@@ -115,7 +115,9 @@ while True:
         if algorithm_choice == 1:
             model = LinearRegression()
         elif algorithm_choice == 2:
-            p = d = q = range(0, 2)
+            p = range(0, 6)
+            d = range(0, 2)
+            q = range(0, 2)
             pdq = [(x[0], x[1], x[2]) for x in list(itertools.product(p, d, q))]
     elif time_period_choice == 2:
         name_time_period_choice = "7 days"
@@ -128,7 +130,9 @@ while True:
         if algorithm_choice == 1:
             model = LinearRegression()
         elif algorithm_choice == 2:
-            p = d = q = range(0, 2)
+            p = range(0, 6)
+            d = range(0, 2)
+            q = range(0, 2)
             pdq = [(x[0], x[1], x[2]) for x in list(itertools.product(p, d, q))]
     elif time_period_choice == 3:
         name_time_period_choice = "12 months"
@@ -141,7 +145,9 @@ while True:
         if algorithm_choice == 1:
             model = LinearRegression()
         elif algorithm_choice == 2:
-            p = d = q = range(0, 2)
+            p = range(0, 6)
+            d = range(0, 2)
+            q = range(0, 2)
             pdq = [(x[0], x[1], x[2]) for x in list(itertools.product(p, d, q))]
     else:
         print("Invalid time period choice. Please try again.")
