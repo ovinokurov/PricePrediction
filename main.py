@@ -23,6 +23,9 @@ from datetime import datetime, timedelta
 from sklearn.linear_model import LinearRegression
 from colorama import init, Fore, Back
 import os
+import itertools
+from statsmodels.tsa.arima_model import ARIMA
+
 
 # This code block checks if the 'reports' folder exists and creates it if it doesn't.
 # This is to ensure that the Excel spreadsheet containing the price predictions can be saved to the correct directory.
@@ -92,6 +95,12 @@ while True:
     print("2. 7 days")
     print("3. 12 months")
     time_period_choice = int(input("> "))
+
+    # Prompt the user to select an algorithm for price prediction
+    print("Choose an algorithm to use for price prediction:")
+    print("1. Linear Regression")
+    print("2. ARIMA")
+    algorithm_choice = int(input("> "))
     
 
     # Define the CryptoCompare API parameters for the selected cryptocurrency and time period
@@ -103,6 +112,11 @@ while True:
             "limit": 24,
             "aggregate": 1
         }
+        if algorithm_choice == 1:
+            model = LinearRegression()
+        elif algorithm_choice == 2:
+            p = d = q = range(0, 2)
+            pdq = [(x[0], x[1], x[2]) for x in list(itertools.product(p, d, q))]
     elif time_period_choice == 2:
         name_time_period_choice = "7 days"
         CRYPTOCOMPARE_API_PARAMS = {
@@ -111,6 +125,11 @@ while True:
             "limit": 168,
             "aggregate": 1
         }
+        if algorithm_choice == 1:
+            model = LinearRegression()
+        elif algorithm_choice == 2:
+            p = d = q = range(0, 2)
+            pdq = [(x[0], x[1], x[2]) for x in list(itertools.product(p, d, q))]
     elif time_period_choice == 3:
         name_time_period_choice = "12 months"
         CRYPTOCOMPARE_API_PARAMS = {
@@ -119,6 +138,11 @@ while True:
             "limit": 365,
             "aggregate": 1
         }
+        if algorithm_choice == 1:
+            model = LinearRegression()
+        elif algorithm_choice == 2:
+            p = d = q = range(0, 2)
+            pdq = [(x[0], x[1], x[2]) for x in list(itertools.product(p, d, q))]
     else:
         print("Invalid time period choice. Please try again.")
         continue
@@ -189,18 +213,21 @@ while True:
     now = datetime.now()
 
     # Convert to string
-    date_time_string = now.strftime("%m%d%Y %H%M%S")
+    date_time_string = now.strftime("%m%d%Y-%H%M%S")
 
     try:
-        wb.save(f"reports/{name_time_period_choice} {selected_cryptocurrency} Price Predictions {date_time_string}.xlsx")
-        print(f"Price predictions for {selected_cryptocurrency} saved to: /reports/{selected_cryptocurrency} Price Predictions {date_time_string}.xlsx")
+        ws.cell(1, 3, value="Algorithm")
+        ws.cell(2, 3, value="Linear-Regression" if algorithm_choice == 1 else "ARIMA")
+        wb.save(f"reports/{'Linear-Regression' if algorithm_choice == 1 else 'ARIMA'}-{name_time_period_choice.replace(' ','-')}-{selected_cryptocurrency}-{date_time_string}.xlsx")
+        print(f"Saved to: reports/{'Linear-Regression' if algorithm_choice == 1 else 'ARIMA'}-{name_time_period_choice.replace(' ','-')}-{selected_cryptocurrency}-{date_time_string}.xlsx")
     except:
         print("Error: Could not save price predictions to Excel spreadsheet. Please try again.")
         exit()
 
     # Print the results to the console
-    print("")
-    print("Price predictions:")
+    print(f"Price predictions for: {selected_cryptocurrency} ")
+    print(f"Algorithm: {'Linear Regression' if algorithm_choice == 1 else 'ARIMA'}")
+    print(f"Time period: {name_time_period_choice}")
     print("+" + "-"*27 + "+" + "-"*12 + "+")
     print("| Date".ljust(27) + " | Price".ljust(14) + "|")
     print("+" + "-"*27 + "+" + "-"*12 + "+")
