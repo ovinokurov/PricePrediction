@@ -105,11 +105,12 @@ while True:
     # This function returns a list of combinations of p, d, and q 
     # values for the ARIMA model to optimize its performance.
     def get_pdq_values():
-        p = range(0, 6)
-        d = range(0, 2)
-        q = range(0, 2)
+        p = range(0, 6) # Define range of values for p parameter
+        d = range(0, 2) # Define range of values for d parameter
+        q = range(0, 2) # Define range of values for q parameter
+        # Generate all possible combinations of p, d, and q values
         pdq = [(x[0], x[1], x[2]) for x in list(itertools.product(p, d, q))]
-        return pdq
+        return pdq  # Return the list of all combinations
 
     # set up the pdq values
     pdq = get_pdq_values()
@@ -117,39 +118,51 @@ while True:
 
     # Define the CryptoCompare API parameters for the selected cryptocurrency and time period
     if time_period_choice == 1:
+        # Define the time period as 24 hours
         name_time_period_choice = "24 hours"
+        # Set the CryptoCompare API parameters to retrieve the last 24 hours of data, with 1 hour intervals
         CRYPTOCOMPARE_API_PARAMS = {
             "fsym": selected_cryptocurrency,
             "tsym": "USD",
             "limit": 24,
             "aggregate": 1
         }
+        # Set the machine learning model to use linear regression
         if algorithm_choice == 1:
             model = LinearRegression()
+        # Set the machine learning model to use ARIMA, with the pdq values defined in the get_pdq_values() function
         elif algorithm_choice == 2:
             pdq
     elif time_period_choice == 2:
+        # Define the time period as 7 days
         name_time_period_choice = "7 days"
+        # Set the CryptoCompare API parameters to retrieve the last 7 days of data, with 1 hour intervals 
         CRYPTOCOMPARE_API_PARAMS = {
             "fsym": selected_cryptocurrency,
             "tsym": "USD",
             "limit": 168,
             "aggregate": 1
         }
+        # Set the machine learning model to use linear regression
         if algorithm_choice == 1:
             model = LinearRegression()
+        # Set the machine learning model to use ARIMA, with the pdq values defined in the get_pdq_values() function
         elif algorithm_choice == 2:
             pdq
     elif time_period_choice == 3:
+        # Define the time period as 12 months
         name_time_period_choice = "12 months"
+        # Set the CryptoCompare API parameters to retrieve the last 12 months of data, with 1 hour intervals
         CRYPTOCOMPARE_API_PARAMS = {
             "fsym": selected_cryptocurrency,
             "tsym": "USD",
             "limit": 365,
             "aggregate": 1
         }
+        # Set the machine learning model to use linear regression
         if algorithm_choice == 1:
             model = LinearRegression()
+        # Set the machine learning model to use ARIMA, with the pdq values defined in the get_pdq_values() function
         elif algorithm_choice == 2:
             pdq
     else:
