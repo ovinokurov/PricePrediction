@@ -171,6 +171,7 @@ while True:
 
     # Get the historical price data for the selected cryptocurrency
     response = requests.get(CRYPTOCOMPARE_API_ENDPOINT, params=CRYPTOCOMPARE_API_PARAMS)
+    print(response)
 
     if not response.ok:
         print("Could not retrieve historical price data. Please try again.")
